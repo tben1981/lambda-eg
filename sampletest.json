@@ -1,3 +1,14 @@
 {
   "body": "{\"email\": \"bnnytan@benny.com\", \"name\": \"Bardman bin Supaman\", \"phone\": \"123123\", \"remark\": \"Pretty sue is here \"}"
 }
+
+// IMPORTANT NOTE:  This json format is wrtten like his as the lambda function uses  jsonJSON.parse(event.body)
+//Eventually when the API is triggered. this is how the Curl command will look 
+
+//curl --location --request POST 'https://v7f6h1h96e.execute-api.ap-southeast-1.amazonaws.com/v1/message' \
+//--header 'Content-Type: application/json' \
+//--data-raw '{
+//             "email": "kenny_nguyen@gmail.com",
+//            "remark": "This is a test remark",
+//            "phone": "776182",
+//            "name": "Kenny Nguyen"}'
