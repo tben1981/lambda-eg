@@ -1,0 +1,69 @@
+
+<html>
+    <head>
+<!--This is a simple hTML form created by me to test lamda-->
+    </head>
+
+<h2>Contact Us</h2>
+<form>
+
+    <label for="name">Name:</label>
+    <input type="text" id="Uname" name="name"><br>
+    <label for="Phone">Phone:</label>
+    <input type="text" id="phone" name="phone"><br>
+
+
+    <label for="email">Email:</label>
+    <input name="email" type="email" id="email"/><br/><br/>
+
+    <label for="name">Message:</label>
+    <textarea name="message" id="remark" ></textarea><br/><br/>
+    <input type="submit"/>
+    <div>
+      <p id="result-text"></p>
+    </div>
+</form>
+<script>
+  
+  const form = document.querySelector('form');
+  form.addEventListener('submit', event => {
+  // prevent the form submit from refreshing the page
+  event.preventDefault();
+
+  //Lamda Endpoint location 
+  const endpoint ="https://e5fqxtxr09.execute-api.ap-southeast-1.amazonaws.com/v1/mailfwd";
+  
+  const body = JSON.stringify({
+    name: Uname.value,
+    email: email.value,
+    phone: phone.value,
+    remark: remark.value
+  });
+  const requestOptions = {
+    method: "POST",
+    body
+  };
+  fetch(endpoint, requestOptions)
+    .then((response) => {
+      if (!response.ok) throw new Error("Error in fetch");
+      return response.json();
+    })
+    .then((response) => {
+      document.getElementById("result-text").innerText =
+        "Email sent successfully!";
+    })
+    .catch((error) => {
+      document.getElementById("result-text").innerText =
+        "An unkown error occured.";
+    });
+
+  
+  // These old codes print the values onto the console 
+  //const { name, email, message } = event.target
+  //console.log('Name: ', name.value)
+  //console.log('Phone: ', phone.value)
+  //console.log('email: ', email.value)
+  //console.log('Remark: ', remark.value)
+  });
+  </script>
+  </html>
